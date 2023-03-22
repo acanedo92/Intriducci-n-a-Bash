@@ -1,4 +1,4 @@
-# Introduccion-a-Bash
+# IntroduccionBash-ECOSUR2023
 Material con el programa del curso de Introducción a Bash (10 horas).
 Incluye:
 1. Ejercicios de bash
