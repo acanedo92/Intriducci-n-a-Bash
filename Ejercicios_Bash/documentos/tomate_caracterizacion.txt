@@ -1,0 +1,5 @@
+nombre	color	forma	duración
+valenciano	rojo	apuntado	corta
+penjar	rojo	ovalado	larga
+amarillo	amarillo	ovalado grande	normal
+industria	rojo	ovalado	normal

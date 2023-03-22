@@ -1,0 +1,10 @@
+#!/bin/bash
+
+Este es un archivo que
+contiene líneas y lo vamos a utilizar
+para realizar los ejercicios de 
+este tema con los comandos anteriormente revisados
+
+echo "Eso es todo amigos!"
+
+done
