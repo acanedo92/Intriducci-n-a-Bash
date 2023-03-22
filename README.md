@@ -1,3 +1,7 @@
 # Introduccion-a-Bash
 Material con el programa del curso de Introducción a Bash (10 horas).
-Incluye carpeta de ejercicios de bash, scripts y el programa del taller
+Incluye:
+1. Ejercicios de bash
+2. Scripts 
+3. BasesDatos
+4. Programa del taller.
