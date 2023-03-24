@@ -4,4 +4,4 @@ Incluye:
 1. Ejercicios de bash
 2. Scripts 
 3. BasesDatos
-4. Programa del taller.
+4. Tutorial del taller.
