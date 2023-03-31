@@ -1,0 +1,24 @@
+---
+title: "Instrucciones"
+output: html_document
+---
+##### ***Requerimientos ***  
+Computadora 8 Gb mínimo  RAM , 500 Gb memoria, 64 bit    
+Acceso a internet estable, de preferencia mediante cable ethernet  
+Descargar la carpeta del curso: https://github.com/acanedo92/IntroduccionBash-ECOSUR2023.git 
+
+##### **Instalar Linux con Virtual Box en Windows**  <a name="subparagraph3"></a>  ![VirtualBox](https://soyundba.com/wp-content/uploads/2021/08/VirtualBox-logo.jpg){width='100px'}
+
+##### **a.¿Qué es VirtualBox y cómo instalar?**
+
+VirtualBox es una aplicación que permite crear una máquinas virtuales para emular sistemas operativos (SO) diferentes al que se encuentra instalado en nuestra computadora; sin la necesidad de eliminar el SO actual e instalar uno nuevo; o particionar el disco para su intalación. Esto permite utilizar programas específicos diseñados para un SO en particular, realizar algunas pruebas, etc. En este caso, nos permitirá emular el SO de LINUX para acceder a la shell de Bash.  
+
+Nota: Descargar e instalar previo al inicio del taller.  
+- Ver tutorial para instalar [VirtualBox](https://www.youtube.com/watch?v=UfCkZZQ8N4k).  
+- Liga para descargar: <https://www.virtualbox.org/>.  
+
+##### **b. Instalar ficheros de Debian (máquina virtual Linux)** 
+Nota: Descargar previo al inicio del taller únicamente la carpeta **debian-11.6.0-amd64-DVD-1.iso** de la siguiente forma:   
+
+- Liga para archivos de sistema operativio (Descargar previo al inicio del taller) <https://www.debian.org/CD/http-ftp/> . Ir a la liga “Imágenes oficiales de CD/DVD de la versión estable, elegir la opción DVD-amd64 y descargar (al final de la página), la opción **debian-11.6.0-amd64-DVD-1.iso**  
+

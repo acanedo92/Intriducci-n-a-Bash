@@ -1,0 +1,1075 @@
+---
+title: "Introducción a Bash" 
+date: "El Colegio de la Frontera Sur, Unidad Villahermosa 2023"
+output:
+  html_document:
+    toc: true
+    toc_depth: 5
+    toc_float: true
+    
+---
+
+## 1. Presentación del Curso <a name="paragraph1"></a>  
+
+Responsable : Dra. Gabriela Castellanos Morales  
+Instructoras: Dra. Anahí Martínez Cárdenas y M.C. Anahí Canedo Téxon  
+Duración del curso: 10 horas (5 sesiones de 2 horas cada una)  
+Horario: Martes y jueves de 9:00 a 11:00 a.m.   
+Fecha de inicio: 11 de abril 2023  
+Fecha de término: 25 de abril 2023  
+
+ 
+***Objetivo del curso en línea:*** Que los y las estudiantes aprendan los comandos básicos de lenguaje BASH y sean capaces de moverse dentro del sistema de archivos de sus computadoras desde una terminal o interfaz de líneas de comandos, así como crear scripts, y ejecutarlos desde línea de comandos.  
+***Perfil de ingreso:*** Estudiantes de nivel medio y superior con interés en aprender las bases para moverse dentro del sistema de archivos de sus computadoras desde una terminal o interfaz de línea de comandos. No es requisito contar con conocimientos previos de programación.  
+***Perfil de egreso:*** Los estudiantes serán capaces de moverse dentro del sistema de archivos de sus computadoras desde una terminal o interfaz de líneas de comandos, así como crear, copiar, mover, eliminar y modificar archivos, generar scripts, hacer bucles o loops  y ejecutarlos desde línea de comandos.  
+
+***Evaluación.***  
+10%	Quiz  
+30%	Prácticas  
+40%	Examen Final  
+20% 	Asistencia  
+
+***Requerimientos ***  
+Computadora 8 Gb mínimo  RAM , 500 Gb memoria, 64 bit    
+Acceso a internet estable, de preferencia mediante cable ethernet  
+Descargar la carpeta del curso: https://github.com/acanedo92/IntroduccionBash-ECOSUR2023.git 
+
+## 2. Breve introducción sobre Linux <a name="paragraph2"></a>  
+
+* **Linux o GNU/Linux es un sistema operativo, como un Windows o Mac**.  
+Es multitarea, multiusuario, multiplataforma y multiprocesador. Fué creado originalmente por Linus Torvalds en 1991, en la Universidad de Helsinki, en Finlandia, a diferencia de Windows y otros sistemas operativos propietarios, ha sido desarrollado por miles de usuarios de computadoras de todo el mundo, contribuyendo todos con el fin de conseguir un sistema operativo confiable, robusto, poderoso, seguro e interactivo.  
+
+* **Linux es el núcleo dentro del proyecto de GNU**.  
+Según su manifiesto, el objetivo fundacional del proyecto es construir un sistema operativo libre y, si es posible, "todas las utilidades que normalmente acompañan a un sistema Unix para que se pueda prescindir de cualquier software que no sea libre".  
+
+* **Software libre, eso quiere decir que además de ser gratuito también podemos acceder al código**.  
+El código abierto es el término que se ha adoptado para referirse al software desarrollado libremente. Es decir los programas son distribuidos con licencias que permiten su modificación, uso y redistribución del código fuente.  
+
+* **Enorme comunidad de desarrolladores de software, diversas distribuciones (e.g. Debian, Ubuntu)**. 
+El propósito de estas distribuciones es ofrecer GNU/Linux como un producto final para instalar o probar en un ordenador, cubriendo una gama de necesidades que van desde el uso cotidiano personal hasta aplicaciones muy específicas en ambientes especializados. Podría decirse que estas distribuciones hacen las veces de las diferentes e innumerables versiones de Windows. 
+
+
+## 3. Interfaz de la línea de comandos de Linux <a name="paragraph3"></a>   
+##### **3.1 Conceptos importantes**
+
+##### **¿Qué es un comando?** 
+Es una orden o instrucción que se ejecuta en el terminal y que ejecuta un programa con una funcionalidad determinada, dentro del sistema de directorios.    
+
+##### **¿Qué es la interfaz de línea de comandos?**
+Un programa basado en texto que permite a los usuarios dar instrucciones a algún programa informático o al sistema operativo.
+
+##### **¿Qué es una shell?**
+
+Un shell es un programa que ejecuta comandos y genera resultados. Exiten varios tipos de shell, en este taller estudiaremos el shell de Bash (Bourne Again SHell)
+
+##### **¿Qué es una Terminal?**
+ También conocida como consola y es un programa informático específico que se utiliza para interactuar con la computadora y, en relación a este curso diremos que la utilizaremos para ejecutar en shell.
+ 
+##### **¿Qué es un script de Shell?**
+Es un archivo de texto que contiene una secuencia de comandos y que van a ser interpretados y ejecutados para obtener un resultado.
+
+##### **3.2 Instalar Linux con Virtual Box en Windows**  <a name="subparagraph3"></a>  ![VirtualBox](https://soyundba.com/wp-content/uploads/2021/08/VirtualBox-logo.jpg){width='100px'}
+
+##### **a.¿Qué es VirtualBox y cómo instalar?**
+
+VirtualBox es una aplicación que permite crear una máquinas virtuales para emular sistemas operativos (SO) diferentes al que se encuentra instalado en nuestra computadora; sin la necesidad de eliminar el SO actual e instalar uno nuevo; o particionar el disco para su intalación. Esto permite utilizar programas específicos diseñados para un SO en particular, realizar algunas pruebas, etc. En este caso, nos permitirá emular el SO de LINUX para acceder a la shell de Bash.  
+
+Nota: Descargar e instalar previo al inicio del taller.  
+- Ver tutorial para instalar [VirtualBox](https://www.youtube.com/watch?v=UfCkZZQ8N4k).  
+- Liga para descargar: <https://www.virtualbox.org/>.  
+
+##### **b. Instalar ficheros de Debian (máquina virtual Linux)** 
+Nota: Descargar previo al inicio del taller únicamente la carpeta **debian-11.6.0-amd64-DVD-1.iso** de la siguiente forma:  
+- Liga para archivos de sistema operativio (Descargar previo al inicio del taller) <https://www.debian.org/CD/http-ftp/> . Ir a la liga “Imágenes oficiales de CD/DVD de la versión estable, elegir la opción DVD-amd64 y descargar (al final de la página), la opción **debian-11.6.0-amd64-DVD-1.iso**  
+
+- Una vez descargados los archivos, nos dirigimos a VirtualBox y pulsamos el botón azúl de “nueva”.   
+- En la ventana desplegada, elegir el nombre que se va a colocar “debian 11”.   
+- En la siguiente ventana se elige la memoria RAM que tendrá nuestra máquina virtual (Importante no pasar de la zona verde y sobre todo, no elegir más del 50% del total con el que cuente nuestra computadora.  
+- A continuación crear el disco duro virtual (elegir la primera opción) y seleccionar la opción de ´capacidad dinámica´.  
+- El tamaño a elegir del disco duro depende de la capacidad total del disco duro real y de qué tanto uso se le vaya a dar a la máquina virtual, puede ser 8, 10 o hasta 20 Gb.  
+- Se elige la opción de crear y ya se cuenta, en la VirtualBox con la máquina virtual instalada.
+
+* Para instalar como tal el SO de Linux, dirigirnos al botón de configuración y se va a cargar el emulador del sistema o imagen de Debian.  
+* Elegir la opción de almacenamiento e ir a la carpeta donde se descargó el archivo DVD, seleccionarlo, se da pulso a aceptar e inicia la instalación de Debian.  
+
+* Se pulsa la flecha verde de “iniciar”  y seguimos los pasos de la instalación:  
+i. Instalación normal, Idioma, País, Configuración de teclado  
+ii. Nombre que se le quiera asignar a la máquina y contraseña de administrador. También se crea un usuario y contraseña sin permisos de administrador **(IMPORTANTE ALMACENAR TODOS ESTOS DATOS)**.  
+iii. Opción de uso de disco duro: “Todo el disco”,  debido a que es una máquina virtual y todo el espacio que se eligió será solo para esto. Incluir todos los archivos en una sola partición. Aceptar toda la configuración del disco duro.  
+iv. Opciones No para más discos duros y consulta de red.  
+v. Opciones de programas:  
+* Con la tecla del espacio, poner o quitar el asterisco a los entornos para instalar: Entorno de escritorio de Debian, entorno de ventanas (Xfce), Utilidades estándar. Dar pulso a continuar.
+vi. Instalar gestor de arranque  
+vii. Elegir disco duro que aparece (que es el que se descargó)  
+viii. Continuar para terminar la instalación. La máquina se reinicia sola y posteriormente arranca el sistema.  
+ix. Introducir usuario y contraseña guardados anteriormente.  
+x. Una vez dentro del SO, elegir la opción de “configuración predeterminada”  
+
+
+
+##### 3.3 **Introducción a GitHub** <a name="subparagraph3"></a>    ![GitHub](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png){width='100px'}
+
+Los proyectos involucrados con Ciencia de Datos incluyen una colección de datos, código fuente/scrips, figuras, informes , etc, los cuáles sufren modificaciones durante el curso del proyecto.  
+
+> 
+**Git**  
+- Sistema de control de versiones, útil para grupos que trabajan proyectos colaborativos involucrados cómo desarrollo de software.   
+- Registra la evolución de un archivo a través del tiempo, e identificar los cambios hechos por cada colaborador.  
+- Para más información entra a [Happy Git with R](https://happygitwithr.com/).   
+> 
+
+![](/home/anahi/01.Bash/imagen_04.png){width='100%'height=100%} 
+
+> 
+**Github:**  
+- Host remoto en Internet, que  actúa como un canal de distribución para los proyectos administrados por Git.   
+- Permite compartir, almacenar y sincronizar proyectos entre los colaboradores de **manera remota**, para realizar lectura y edición de los archivos, a través de los llamados **repositorios**  
+
+![](/home/anahi/01.Bash/imagen_05.png){width='50%'height=50%} 
+>   
+
+***Ventajas:***  
+* Flujos de trabajo ordenados  
+* Estructurar y administrar el historial de versiones  
+* Compartir proyectos para que prueben tu código   
+* Permitir que tus colegas revisen tus proyectos y realicen modificaciones en nuevas bifurcaciones   
+* Enviar sugerencias, cambios en el código al propietario  
+* Tener un backup de tus proyectos  
+
+
+## 4. Pasos iniciales con la interfaz de la línea de comandos <a name="paragraph4"></a>  
+
+#### 4.1 El entorno de la terminal  <a name="subparagraph4"></a> 
+
+* El entorno de la terminal: La pantalla de la terminal representa nuestro interprete de comando, así como lo observamos, está listo para empezar a recibir ordenes que posteriormente transformará en en resultados.  
+* Se llama prompt a los caracteres que se muestran en una línea de comandos para indicar que está a la espera de recibir órdenes.    
+
+Al lado izquierdo del cursor (_) se observará siempre  
+  i. el nombre de usuario  
+  ii. el nombre de la máquina o sistema  
+  iii. el lugar en el que nos encontramos (~).  
+
+~~~
+usuario@sistema:~$_  
+~~~ 
+
+#### 4.2 Organización de directorios <a name="subparagraph4"></a> 
+
+El sistema de archivos de GNU/Linux tiene una estructura jerárquica de directorios y subdirectorios que dependen del directorio raíz.  
+Se puede imprimir la estructura de directorios de tu home u otro directorio: 
+
+
+```{bash}
+#tree -L 1 -d $HOME/Escritorio/Practicas
+```
+![](/home/anahi/01.Bash/imagen_06.png){width='100%'height=100%} 
+
+
+***Ubicación del directorio actual***  
+Para iniciar a dar órdenes al sistema, es esencial cumplir con la sintaxis adecuada para que se entienda lo que queremos decir o hacer.  
+Ej. Si nosotros queremos que el sistema nos muestre el contenido del directorio en el que nos encontramos actualmente no podemos poner
+"muestrame el contenido del directorio"  
+
+ ~~~
+ usuario@sistema:~$ muestrame el contenido del directorio
+#El interprete de comandos nos va a decir: 
+ muestrame: no se encontró la orden  
+~~~  
+ 
+* Por ejemplo para pedirle al sistema que nos indique dónde nos encontramos ubicados usaremos el comando **pwd** y en pantalla nos desplegará la ubicación. 
+
+~~~
+usuario@sistema:~$ pwd   
+/home/usuario  
+~~~  
+
+Con la opción  **man** (de manual, en inglés) o **help** podemos conocer lo que nos ofrece o puede hacer un comando.  
+
+~~~
+usuario@sistema:~$ man pwd    
+usuario@sistema:~$ pwd --help    
+~~~  
+
+#### 4.3 Aprendiendo a usar comandos <a name="subparagraph4"></a> 
+Los comandos algunas veces necesitan parámetros (opciones y/o argumentos) para establecer opciones específicas.  
+a. **¿Qué son las opciones:** Indican sobre qué directorio o archivo hay que ejecutar el programa indicado. Se escribe seguido del comando. Generalmente es una letra precedida por un guion.  
+b. **¿Qué es un argumento?** Es una indicación sobre qué directorio o archivo hay que ejecutar el programa indicado. Generalmente se pone después del comando y las opciones.
+
+EJEMPLO  
+
+***Comando ls ***  
+* Lista los archivos de un directorio y muestra información acerca de los FICHEROs (del directorio actual por defecto).  
+* Sintaxis: ls [OPCIÓN]... [FICHERO]...  
+* Podemos acceder a las opciones de un comando con el manual.   
+
+~~~
+usuario@sistema:~$ man ls
+~~~ 
+
+* Nosotros le podemos pedir al comando que nos muestre el contenido de un directorio con/sin los elementos que contiene:   
+
+~~~   
+usuario@sistema:~$ ls /home/ -l   
+~~~    
+
+
+***NOTAS:***
+* Hay comandos que no requieren argumentos  
+* Es importante tener en cuenta que se debe dejar espacio entre cada componente de la orden.
+* Dado lo anterior podemos asumir que un comando puede esperar ninguno, uno o varios parámetros.  
+* La estructura general queda como sigue: 
+
+~~~
+comando  opciones  argumentos
+~~~
+
+* ***Es importante resaltar que a las opciones siempre las antecede un guion:***
+* El orden de los parámetros y las opciones puede ser indistinto.
+
+~~~   
+a. usuario@sistema:~$ ls /home/ -l   
+b. usuario@sistema:~$ ls -l /home/  
+~~~    
+
+#### 4.4 Resumen <a name="subparagraph4"></a>   
+* El intérprete de comandos espera que le indiquemos una línea de órdenes para ejecutar la tarea que le hayamos indicado.  
+* La sintaxis básica de una orden es **COMANDO [PARÁMETROS] [OPCIONES]** .  
+* Con el comando le indico qué tiene que hacer, en las opciones cómo debe hacerlo y con los parámetros le indico los elementos donde tendrá que realizar la acción.  
+* Para diferenciar entre las partes de una línea de órdenes se utilizan los espacios.  
+* Puedo obtener ayuda de cualquier comando usando **man/ -- help** nombre_del_comando.  
+
+#### 4.5 Primer quiz  <a name="subparagraph4"></a> 
+
+1. ¿Qué comando nos indica el directorio desde el que estamos ejecutando la orden?
+a. pwd
+b. cd
+c. ls
+d. dir
+
+2. ¿Todos los comandos necesitan parámetros para funcionar?  
+a. Sí, siempre  
+b. No, nunca  
+c. Algunas veces son imprescindibles otras serán opcionales  
+
+3. El orden correcto para ejecutar una orden es:
+a. Comando-opciones-parámetros
+b. parámetros-comandos-opciones
+c. Opciones-parámetros-comando
+
+4. ¿Cómo separa el intérprete las partes de una línea de órdenes?
+a. Guión
+b. puntos 
+c. espacios
+
+5. ¿Cómo se usan las opciones de un comando (también llamadas modificadores)?
+a. Se pueden usar separados pero también juntarlos con un único guión
+b. Siempre se pondrá un guión seguido de varias letras
+c. Obligatoriamente de ponen al final de la línea de comandos
+
+6. ¿Cuáles caracteres se deben evitar usar en los nombres de los archivos y por qué?  
+
+#### 4.6 Práctica 1  <a name="subparagraph4"></a> 
+
+- Ejecutar en la terminal las tareas:  
+- Mostrar el directorio actual.
+- Listar el contenido del directorio actual.
+- Listar el contenido del directorio anterior.
+- Imprimir pantalla con los resultados de las tareas ejecutadas y enviarla/subirla a la plataforma para evaluación.  
+
+## 5. Navegar por el sistema de directorios y/o archivos. <a name="paragraph5"></a>     
+En esta sesión veremos el sistema de directorios, es decir cómo podemos movernos dentro de nuestro sistema de directorios y/o archivos, como crear, modificar, entre otros.  
+
+#### 5.1 Ubicación y contenido <a name="subparagraph5"></a>    
+* Tenemos que saber entonces que una instrucción siempre se ejecuta desde un lugar, un punto dentro de mi estructura o sistema de directorios.  
+* Para empezar a movernos dentro de nuestra estructura de directorios tenemos que utilizar un comando que nos ayude a cambiarnos de directorio, este es el comando ***cd***.  
+* El comando ***cd*** modifica el directorio actual de trabajo del shell.  
+
+
+```{bash}
+#Directorio actual:
+pwd
+#Moverme al directorio 02.Directorio:
+cd  02.Directorio
+#Confirmar el nuevo directorio:
+pwd
+```
+  
+* El comando ***ls*** nos permite listar el contenido de un directorio. Tiene varias opciones que podemos conocer con el manual de ls, entre ellas son: ls -l, ls -lh, ls -lr, ls -lt, ls -ltr. ¿Qué hace cada uno de ellos? :  
+
+```{bash}
+# man ls 
+```
+  
+
+Nota: Para desarrollar los siguientes temas, nos vamos a la máquina virtual y abrimos el sistema de carpetas en Windows y al mismo tiempo la terminal, trabajaremos con la carpeta de Ejercicios_Bash.    
+  
+#### 5.2 Las rutas. Tipos, usos y características <a name="subparagraph5"></a> 
+
+* La ruta es la localización o ubicación de un archivo o directorio.  
+* En ocasiones podemos tener un archivo con el mismo nombre pero puede estar localizado en diferentes directorios, por lo tanto, la ruta es particular para cada uno.  
+* Siempre debemos colocar la ruta precisa del archivo para que nuestro interprete de comandos pueda llevar a cabo la acción que le estamos ordenando.  
+
+
+**Sistema de ventanas gráficas vs. Terminal**  
+El sistema de ventana de archivos, es el sistema común de carpetas y documentos que vemos en una computadora con sistema operativo Windows o Mac:  
+![**Ventana Windows**](/home/anahi/01.Bash/imagen_01.png){width='100%'height=100%}    
+La terminal tiene una distribución diferente o una representación gráfica distinta.  
+![** Terminal**](/home/anahi/01.Bash/imagen_02.png){width='100%'height=100%}  
+**Rutas absolutas y relativas**  
+La ruta absoluta siempre comienza en el directorio raíz (/) 
+
+~~~
+	usuario@sistema:~$ cd /home/anahi/01.Bash/Ejercicios_Bash/documentos
+~~~  
+
+Las rutas relativas indican dónde se encuentra un fichero dentro de un sistema de ficheros comenzando desde el directorio de trabajo o directorio actual  
+
+~~~
+	 usuario@sistema:~$ cd borradores/primer-trimestre
+~~~  
+
+**Sensibilidad entre mayúsculas, minúsculas y espacios **  
+El lenguje de Bash es sensible entre mayúsculas, minúsculas y espacios utilizados en los nombres de los ficheros o archivos.  
+
+* Por ejemplo para el nombre de un directorio al que le queremos iniciar con una mayúscula:  
+~~~
+Documentos 
+~~~
+* Bash reconocerá como un directorio diferente si tenemos otro directorio con el mismo nombre pero inicia con minúscula:  
+~~~
+documentos
+~~~
+* Finalmente si nosotros queremos crear un directorio con un nombre como:
+~~~
+mkdir borrador datos finales
+~~~
+* Bash creará tres directorio diferentente debido a que va interpretar el espacio como un operador para crear un elemento indipendiente. Lo recomendable en estos casos es utilizar guion medio o guión bajo si deseamos crear directorios o archivos con nombres largos
+~~~
+borradores_datos_finales 
+ó
+borradores-datos-finales
+~~~
+
+#### 5.3 Atajos de Bash <a name="subparagraph5"></a>     
+Existen tips o atajos en el lenguaje Bash que nos facilita la ejecución de comandos.  
+
+ **Atajo** |  **Función** | 
+----------------------| ----------------------| ---------------|
+|↑     | Muestra los comandos ejecutados anteriormente |   
+|../   | Nos posiciona en un directorio anterior  |
+|↹     | Ayuda a completar/predecir el nombre de un archivo, directorio, rutas, comandos, programas, etc.
+|↹ ↹   | Muestra cuáles elementos podemos elegir dentro del fichero donde estamos posicionados  |
+|>    | Sobreescribe un archivo si existe, o crea un nuevo archivo, con el resultado de la salida de un comando |  
+|>>  | Agrega el resultado de la salida de un comando, a un archivo ya existete| 
+
+
+#### 5.4 Crear, mover, renombrar, copiar y borrar y ver el contenido de archivos y directorios <a name="subparagraph5"></a> 
+
+##### El comando ***mkdir***
+Función: Permite crear nuevos directorios
+Sintaxis: mkdir [OPCIÓN]... DIRECTORIO...
+
+~~~
+	 usuario@sistema:~$ mkdir ejercicio_1
+~~~ 
+
+##### El comando ***mv***
+Función: Permite mover archivos y directorios de un directorio a otro.  
+Sintáxis: mv [OPCIÓN]... ORIGEN... DIRECTORIO  
+
+~~~
+	 usuario@sistema:~$ ejercicio_1 ./borradores
+~~~ 
+
+Función: También permite renombrar un archivo o directorio.  
+Sintáxis: mv Nombre_Inicial ...Nombre_Final ..  
+
+~~~
+	 usuario@sistema:~$ mv mv ejercicio_1  ejercicios_1
+~~~ 
+
+##### El comando ***rm***
+Función: Permite borrar archivos, enlaaces y directorios (sólo sí se incluye opción -r).  
+Sintáxis: rm [OPCIÓN]... [FICHERO]...   
+
+~~~
+	 usuario@sistema:~$ rm -r ejercicios_1
+~~~ 
+
+##### El comando ***cat ***
+Función: Permite ver el contenido de archivos  
+Sintáxis: cat [OPCIÓN]... [FICHERO]...  
+
+~~~
+	 usuario@sistema:~$ cat borrador-datos-finales.doc
+~~~ 
+##### El comando ***cp***  
+Función: Permite copiar un archivo a otro. También puede copiar varios ficheros en un directorio determinado.    
+Sintáxis: cp [OPCIÓN]... ORIGEN... DIRECTORIO   
+~~~
+	 usuario@sistema:~$ cp borrador_datos-inicales.doc /home/usuario/Ejercicios_Bash
+~~~ 
+
+#### 5.5 Comodines <a name="subparagraph5"></a>  
+
+* ***El asterisco*** < * > sirve para indicar que en el lugar donde se encuentra puede haber cualquier cadena de caracteres. Es decir, < *.txt > indica que se incluyen todos los ficheros (directorios y archivos) que tengan cualquier nombre, pero se obliga a que la extensión sea txt.  
+
+~~~
+	 usuario@sistema:~$ rm /home/alumno/*.txt
+~~~ 
+
+* ***La interrogación*** representa cualquier carácter, pero repetido unicamente una vez. El asterisco se podía sustituir por uno o varios caracteres, pero no así la interrogación.  
+
+~~~
+	 usuario@sistema:~$ rm /home/alumno/borrador-dato?-finales.doc
+~~~ 
+
+#### 5.6 Editor de texto <a name="subparagraph5"></a>    
+* Los editores de texto también se conocen como editores de código.  
+* Son aplicaciones que permiten generar y editar una gran cantidad de archivos de lenguaje de programación.  
+* GNU ***nano*** es un editor de texto de línea de comandos fácil de usar para sistemas operativos Unix y Linux.  
+* Incluye toda la funcionalidad básica que esperaría de un editor de texto regular.  
+
+* Para abrir un archivo existente o para crear un nuevo archivo:  
+
+~~~
+usuario@sistema:~$ nano FileName
+* Esto abre el archivo o una nueva ventana del editor y se puede comenzar a editar el archivo.
+~~~ 
+
+![](/home/anahi/01.Bash/imagen_03.png){width='100%'height=100%}  
+
+* En la parte inferior de la ventana, hay una lista de los comandos más básicos para usar con el editor. 
+
+***Comando***         |  ***Descripción***    |
+----------------------| ----------------------|
+*Ctrl+G.* | Obtener una lista de todos los comandos 
+*Ctrl+O*  |  Guardar cambios
+*Ctrl+X*  | Salir del editor
+
+#### 5.7 Resumen <a name="subparagraph5"></a>  
+* El comando pwd muestra el directorio actual  
+* El comando cd cambia de directorio  
+* El carácter ~ hace referencia al directorio personal del que ejecuta la orden  
+* El comando ls despliega una lista con el contenido de un directorio.  
+* Opciones comunes que modifican cómo se mostrará la información:   
+  i) -l lista con detalle  
+  ii) -h muestra el tamaño más legible  
+  iii) -a muestra los ocultos  
+  iv) -S ordena por tamaño  
+  v) -t ordena por fecha  
+  vi) -r invierte el criterio de ordenación  
+  
+* Para indicar dónde se encuentra un elemento del sistema de ficheros (un archivo o un directorio), utilizo rutas.  
+* Las rutas pueden ser ***absolutas*** (indico todos los directorios que tengo que seguir desde la raíz del sistema) o ***relativas*** (indico el camino desde el directorio donde ejecuto la orden). 
+* Las rutas absolutas siempre empiezan por una barra / (que indica la raíz)  
+* Si utilizo **( .. )** en una ruta estoy haciendo referencia al directorio padre.   
+* Un único punto **( . )**  indica el directorio actual  
+* Linux distingue entre mayúsculas y minúsculas  
+* Si quiero usar espacio en un nombre deberé ponerlo entre comillas o con un carácter de escape (\) 
+* Usando los cursores arriba y abajo aparecerán las últimas órdenes que he ejecutado    
+* Puedo ayudarme del tabulador para terminar de escribir una ruta  
+* Con ***Control+R*** puedo buscar en el historial de instrucciones  
+* El comando ***history*** muestra el historial de instrucciones y puedo ejecutarlas usando el numero_instrucción  
+* El comando ***mkdir*** sirve para crear directorios  
+* El comando ***rm*** borra ficheros, y con ***-r*** directorios ***(ADVERTENCIA: se debe tener mucho cuidado al utilizar este comando, pues una vez eliminado un fichero o un directorio de esta manera, es IMPOSIBLE recuperarlo)***  
+* ***touch*** crea ficheros vacíos  
+* ***mv*** mueve elementos o cambia su nombre  
+* ***cat*** muestra el contenido de un archivo  
+* El comando ***cp*** copia ficheros y directorios  
+* El símbolo asterisco ***( * )*** equivale a cualquier secuencia de caracteres en el nombre de un elemento.  
+* El símbolo interrogación ***( ? )*** equivale a un sólo carácter, pudiendo éste ser cualquiera.
+* Editores de texto en la terminal, existen varios, en este caso trabajamos con nano.  
+
+#### 5.8 Segundo quiz <a name="subparagraph5"></a>  
+
+1. ¿Qué hace el comando cd?  
+a. Muestra el contenido del directorio actual  
+b. Cambia de directorio  
+c. Muestra la ruta del directorio actual  
+
+2. ¿Qué hace el modificador -l en el comando ls?  
+a. Muestra los elementos ocultos  
+b. Muestra los elementos ordenados por fecha  
+c. Muestra información detallada de cada elemento  
+
+3. ¿Qué hace el modificador -S en el comando ls?  
+a. Muestra el contenido ordenado por tamaño  
+b. Muestra el contenido ordenado alfabéticamente  
+c. Muestra el contenido ordenado por la extensión.  
+
+4. Si una ruta inicia con (/) podemos afirmar que:  
+a. Es una ruta absoluta  
+b. Es una ruta relativa
+
+5. ¿Qué concepto está asociado al uso de ..?  
+a. El directorio actual
+b. El directorio personal del usuario  
+c. El directorio padre  
+
+6. ¿El comando mkdir Fotos crea el directorio fotos?  
+a. Si  
+b. No  
+
+7. ¿Se pueden utilizar espacios en el nombre de un directorio o archivo?  
+a. Si, usando comillas  
+b. No, porque el espacio es un separador entre las partes de la línea de comandos  
+
+8. ¿Qué hará el bash si utilizo el tabulador para autocompletar una ruta pero no tiene información suficiente para identificar el elemento de forma exacta?  
+a. El comando arroja error y se debe volver a escribir  
+b. Completa la ruta hasta donde sabe, se para y si pulsamos dos veces seguidas nos muestras las posibles opciones  
+c. Elige la primera de las opciones en orden alfabético  
+
+9. ¿Para qué sirve la opción -p del comando mkdir?  
+a. Para crear un archivo  
+b. Para crear un directorio varias veces  
+c. Para crear todos los directorios de la ruta que le indico por parámetro  
+
+10. El comando mv sirve para cambiar el nombre de:  
+a. Archivos/Directorios/Archivos y Directorios  
+b. rm -r nombre_directorio.  
+c. Borrará el directorio solo si está vacío  
+d. No lo borrará porque rm solo borra archivos  
+e. Borrará el directorio y todo su contenido.
+
+11. El comando cp  
+a. Puede tener varios elementos de origen  
+b. Tiene solo un elemento de origen y otro de destino  
+c. Tiene solo un elemento de destino y varios de origen.  
+
+12. ¿Cuál es la funcionalidad básica de un editor de texto?   
+a. Crear archivos
+b. Ejecutar comandos 
+c. Desarrollar código
+
+#### 5.9 Práctica 2 <a name="subparagraph5"></a>  
+* Utilizando el directorio Ejercicios_Bash que descargaron a su máquina virtual, utiliza la terminal para realizar los siguientes ejercicios:   
+
+1. Copiar el fichero borrador-datos-finales.xls a datos-finales-copia.xls  
+2. Renombrar pescando.jpg a lubina.jpg  
+3. Mover estadisticas/ a Ejercicios_Bash/documentos/  
+4. Borrar todas las canciones de The Corrs  
+5. Mover todas las fotos en personales/ a un nuevo directorio llamado ficheros/vacaciones/   
+
+6. Borrar todo lo que contiene el directorio musica/2009/  
+7. Mover todos los ficheros con extensión .gif del directorio fotos/ al directorio ficheros/  
+8. Crea el archivo de texto Practica_2, escribe #este es mi primer archivo de texto. Guardalo dentro de la carpeta Ejercicios_Bash.  
+9. Como comprobación de la ejecución de todos los ejercicios, teclea el comando history e imprime tu pantalla, adjunta la imagen a tu carpeta de Prácticas.  
+
+
+## 6. Visualización y manipulación de archivos <a name="paragraph6"></a> 
+
+#### 6.1 Brevario para explorar archivos <a name="subparagraph6"></a>  
+A continuación se revisarán algunos comándos básicos utilizados en el sistema de línea de comandos desde el intérprete de bash para poder explorar, visualizar y editar archivos, de forma eficiente.     
+
+Sin embargo, antes de revisar los comando, daremos una breve explicación de los principales archivos que estaremos manejando durante el curso y que nos serán útilies para almacenar datos que necesitemos analizar.
+
+#### **Archivos .txt**
+
+Son archivos de texto simple, texto sin formato,  o comúnmente conocidos como archivos de texto plano. Contienen únicamente texto formado por caracteres que son legibles por humanos y carece de cualquier tipo de formato tipográfico.  
+![](/home/anahi/01.Bash/imagen_07.png){width='100%'height=100%}  
+
+#### **Archivos .csv**  
+* Los archivos CSV (del inglés "Character-separated values", Valores Separados por un Delimitador) sirven para almacenar datos tabulares (números y texto) en texto simple.  
+* Los delimitadores más comunes son la coma (","), el punto y coma (";") y tabulador (``"\t"``) o espacio (``"\s"``) caracteres invisibles.  
+* Los archivos separados por coma y por punto y coma, reciben normalmente la extensión **"CSV"**; y los archivos separados por "tab", la extensión **"TSV"**. Existen también bases de datos en dichos formatos que reciben la extensión **"TXT"**. Los archivos CSV son simples y funcionan con la mayoría de las aplicaciones que trabajan con datos estructurados.    
+
+![](/home/anahi/01.Bash/imagen_08.png){width='100%'height=100%}  
+  
+Nota: Para desarrollar los siguientes temas, nos vamos a la máquina virtual y abrimos el sistema de carpetas en Windows y al mismo tiempo la terminal, trabajaremos con la carpeta de DataBases y con el archivo ***InsectSprays.csv***.  
+
+####  Comando ***less ***
+Función: Despliega archivos página a página  
+Sintáxis: *less* FileName
+
+```{bash}
+# less InsectSprays.csv
+```
+
+#### Comando ***head/tail***
+
+Función: Despliega el encabezado y el final de los archivos (por default muestra 10 líneas)  
+Sintáxis: head/tail [OPCIÓN]... [FICHERO]...  
+Opciones: head/tail --help    
+-n: para indicar el número de líneas que deseas desplegar.
+
+```{bash}
+head -n3 InsectSprays.csv
+```
+
+```{bash}
+tail -n3 InsectSprays.csv
+```
+
+- Puedes crear un subset de datos y redireccionar a un nuevo archivo:  
+Sintáxis: head -n(número de líneas) ***>*** NewFile.csv
+
+```{bash}
+head -n15 InsectSprays.csv > Subset_InsectSprays.csv
+```
+
+#### Comando ***wc*** 
+Función: Imprime conteo de  líneas, palabras o caracteres de un archivo  
+Sintáxis: *wc* FileName    
+Opciones: wc --help    
+wc -l Contar el número de líneas de un archivo  
+
+```{bash}
+wc -l InsectSprays.csv
+wc -l Subset_InsectSprays.csv
+```
+
+#### Comando ***grep***   
+Función: Se utiliza comunmente para la búsqueda de texto que coincida con los argumentos que le introducimos.  
+Puedes buscar archivos en una lista, o dentro de un archivo buscar coincidencias con el texto que introducimos.  
+
+Sintáxis: *grep* "string de búsqueda" FileName    
+"string_busqueda"= palabra clave a buscar.   
+(letra, palabras con espacios, signos de puntuación y caracteres del control)  
+ 
+```{bash}
+grep "Insecticida-Comercial" InsectSprays.csv
+```
+Opciones: grep --help   
+grep -c : imprime solo un número de líneas que coincide con el patrón de búsqueda dentro de un archvio.  
+
+<span style="color: #00868B;">**¿Cuántos Bichos tenemos en el archivo InsectSprays.csv?**</span>
+```{bash}
+# grep -c "Bicho" InsectSprays.csv
+```
+
+#### Comando ***cut***    
+Función: Extrae las partes seleccionadas de cada FICHERO en la salida estándar  
+Sintáxis: cut [OPCIÓN] ... [FileName] ...  
+
+Opciones:  
+cut -d  --delimiter: Delimitador de campos. El delimitador por default es un tabulador (``"\t"``); podrías usar espacio (``"\s" ``), punto ("."), guiones ("-", "_"), comas ",",etc. 
+
+cut -f --fields=  Selecciona/muestra solamente los campos de interés
+
+
+```{bash}
+cut  -f 1 InsectSprays.csv 
+```
+
+#### Comando ***sed***   
+Función:   
+
+-Herramienta que permite buscar y reemplazar en un texto.  
+-Busca cadenas de texto, palabras o patrones y los reemplaza por el texto que deseas.  
+-Permite buscar e insertar/eliminar texto de un documento.  
+-Análogo al "buscar y reemplazar" de Microsoft Word  
+
+Sintáxis:  
+
+~~~  
+usuario@sistema:~$ sed 's/texto_a_buscar/texto_a_reemplazar/g' fichero_a_reemplazar > fichero_nuevo  
+~~~
+
+```{bash}
+sed 's/Bicho/Mosca/g' InsectSprays.csv > Mosca_InsectSprays.csv
+head -n 5 Mosca_InsectSprays.csv
+```
+
+<span style="color: #00868B;">**¿Qué sucedió en el archivo Mosca_InsectSprays.csv?**</span>    
+
+#### Comando ***sort***
+Función: Permite ordenar las líneas de un archivo, de manera alfabética, inversa, numericamente, incluso permite eliminar duplicados.   
+Sintáxis: sort [OPCIÓN]... [FICHERO]..  
+
+Ejemplo:   
+* Se desea ordenar de manera alfabética, los tratamientos utilizados para matar bichos en la base de datos InsectSprays.csv: 
+
+```{bash}
+# cut -f 2 InsectSprays.csv > Tratamientos.txt
+# less Tratamientos.txt
+# sort Tratamientos.txt 
+```
+
+<span style="color: #00868B;">**¿Qué ocurre al utilizar el comando y sus diferentes opciones (-d, -r, -u)?**</span> 
+
+```{bash}
+#sort -d Tratamientos.txt
+#sort -r Tratamientos.txt
+sort -u Tratamientos.txt
+```
+
+
+#### 6.2 Uso del ***pipe ' | '*** <a name="subparagraph6"></a>   
+Función: Un pipe es un flujo de datos que circula entre dos procesos. El resultado de un comando o programa, será la entrada para un nuevo comando/programa.  
+La ventaja es dividir una tarea grande, en pequeñas tarea o pasos.  
+
+Sintáxis:  
+
+~~~
+usuario@sistema:~$ Comando-1 | Comando-2 | …| Comando-N
+~~~
+
+Ejemplo:   
+* Se desea explorar las primeras líneas del archivo  InsectSprays.csv, extraer todas las líneas que contengan la palabra "Bicho", y cortar la columna 1 para finalmente contabilizar el número de individuos.  
+
+```{bash} 
+head InsectSprays.csv | grep "Bicho" | cut -f 1 | wc -l
+```
+
+<span style="color: #00868B;">**Mini-Reto: Utilizando los comando cut | grep | wc responde: ¿A cuántos individuos en la base de datos InsectSprays.csv se les aplicó el Bio-Insecticida?  **</span>  
+
+#### 6.3 Permisos de archivos <a name="subparagraph6"></a>   
+
+ **Atributo** |  **Archivos** | **Directorios** |
+----------------------| ----------------------|----------------------|
+*r* | abrir y leer | listar contenidos si tiene +x
+*w* | editar pero no renombrar/borrar (atributo dir)| permite generar archivos en dir, si tiene +x
+*x* | permite ejecutar archivo (programa) si +r | permite entrar al directorio
+
+
+#### 6.4 Cambiar permisos <a name="subparagraph6"></a>   
+
+* Comando ***chmod***  
+Función: Sirve para asignar permisos de acceso a carpetas y directorios en sistemas de archivos compatibles con los permisos de archivo típicos de Unix
+
+* Revisar los permisos del archivo
+```{bash}
+ls -l NuevoArchivo.txt
+```
+
+* Asignar permisos de lectura:
+```{bash}
+#chmod +w  NuevoArchivo.txt
+```
+
+* Asignar permisos de ejecución :
+```{bash}
+#chmod +x  NuevoArchivo.txt
+```
+
+* Verificar que se hayan realizado los cambios
+```{bash}
+ls -l NuevoArchivo.txt
+```
+
+#### 6.5 Resumen  
+* Imprimir en pantalla la visulización de archivos muy grandes puede causar problemas de memoria RAM, por lo que es aconsejable evitar usar ***less** en estos casos.
+* Los comandos head/tail son útiles para explorar el contenido de un archivo.
+* El comando ***grep*** pueden ayudarnos a contar y extraer el número de elementos coincidentes con un patrón de búsqueda.   
+* Utilizando el símbolo "|" se pueden dar instrucciones seriales para obtener un resultado final de mayor compeljidad.  
+* El símbolo ***">"*** redirecciona la salida de un comando a un archivo, se debe tener cuidado pues, si el archivo ya existe, borrará el contenido anterior; lo mismo sí se usa el comando ***sed -e ***; se sobreescribe un nuevo archivo. 
+
+
+#### 6.6 Tercer quiz  
+En una base de datos (Censo_2020.csv) cuyo tamaño son 5Gb, con 510,000 líneas y 4 columnas. Contiene el número de habitantes por cada municipio en el estado de Tabasco, organizado de la siguiente manera:  
+
+**Municipio  ** |  **No. habitantes **| **Rango de Edad **  | **Escolaridad **  |
+----------------| --------------------| --------------------| ------------------|
+Villahermosa    |   100,000           |   20-30 años        |   Universidad     |
+Villahermosa    |   100,000           |   20-30 años        |   Universidad     |    
+Villahermosa    |   100,000           |   20-30 años        |   Universidad     |    
+Humanguillo     |   300,000           |   50-60 años        |   Primaria        |    
+Tenosique       |   100,000           |   30-40 años        |   Secundarias     |
+Macuspana       |   10,000            |   10-20 años        |   Preparatoria    |
+
+
+1. Deseas explorar su contenido, ¿qué comando usarías?  
+a. Utilizas el comando less  
+b. Utilizas un editor de texto para visualizar la base de datos  
+c. Tecleas: head -10 Censo_2010.csv   
+
+2. Necesitas hacer un subset de los habitantes que pertenecen al municipio de Villahermosa  
+a. head Villahermosa Censo_2010.csv > Nuevo_Subset  
+b. grep "Villahermosa" Censo_2010.csv > Nuevo_Subset  
+c. wc -w Villahermosa Censo_2010.csv > Nuevo_Subset  
+
+3. Deseas conocer el número de registros pertenecientes al municipio de Humanguillo:  
+a. grep -c "Humanguillo" Censo_2010.csv  
+b. wc -w "Humanguillo" Censo_2010.csv  
+c. grep "Humanguillo" Censo_2010.csv | wc -l    
+
+4. Imagina que quieres distribuir tu código y evitar que otros usuarios puedan realizar cambios, ¿cómo puedes restringir los permisos de edición?     
+a. Utilizando el comando: chmod -w  
+b. Escribir un archivo de configuración para el script.  
+c. Utilizando el comando: chmod -r  
+
+5. Descargaste un programa escrito es bash (.sh), y al ejecutarlo te dice: **"Permiso denegado"**...   
+a. El programa tiene un error al descargarlo  
+b. No tengo permiso de edición y debo pedir acceso al autor del programa   
+c. No tengo permiso de ejecución y debo modificar los permisos en la terminal.  
+
+#### 6.7 Práctica <a name="subparagraph6"></a>   
+
+#### PARTE 1
+<span style="color: #00868B;"> ***Utiliza pipe "|" para responder las siguientes preguntas acerca del archivo ConteoElementos.csv dentro de la carpeta DataBases. Guarda el historial de tu tarea en un nuevo archivo con el nombre: "Practia3-P1_NombreAlumno.txt*** </span>  
+
+1. ¿Cuáles son los nombres de las columnas del archivo?
+2. ¿Cuántos países contiene la columna #1?
+3. ¿Cuántos animales contiene la columna #3?
+4. ¿Cuáles y cuántos animales comienzan con la letra "C"? (Pista: Utilizar cut | grep )
+
+#### PARTE 2
+<span style="color: #00868B;">**Utiliza el archivo Genes.txt dentro de la carpeta DataBases y guarda el historial en un nuevo archivo "Practica3-P2_NombreAlumno.txt**</span>  
+
+1. Muestra las primeras 10 líneas del archivo Genes.txt
+2. Identifica ¿Cuál es el string qué se repite?
+3. Sustituye NODE por GENE utilizando el comando ***sed*** y guárdalo en el mismo archivo (Revisa los parámetros del comando que te permitan hacerlo).
+4. ¿Cuántos GENES contiene el archivo?
+
+## 7. Sintaxis del lenguaje para generar scripts <a name="paragraph7"></a>  
+
+#### 7.1 ¿Por qué usar scrips? <a name="subparagraph7"></a>   
+~~~ 
+* Automatizar procesos, eliminar tareas repetitivas y ahorrar tiempo.
+* Planifica el flujo de trabajo. Proporciona una secuencia de actividades bien estructuradas y secuenciales.  
+* Un script se puede ejecutar cuántas veces quieras, incluso por diferentes usuarios, permite compartir código con una comunidad.  
+* Con scripts, podemos proporcionar valores dinámicos a comandos usando argumentos de línea de comando  
+* Los comandos, variables y entornos pueden ser utilizados de manera eficiente y eliminarlos si no se van a requerir nuevamente, hace más eficiente el uso de los recursos.  
+* Se pueden escribir programas interactivos  
+~~~  
+
+* Los comentarios son una parte esencial en cualquier pieza de código. Son partes del código que no se ejecutan, inician con el símbolo # (tu yo del presente le recuerda a tu yo del futuro qué querías hacer o para qué sirve cada script; también es fundamental para que cualquier otra persona pueda usar tú script y comprender qué está haciendo)  
+
+~~~
+#Esto es un comentario en Bash.  
+aqui-va-el-codigo  
+#Este es otro comentario.  
+~~~
+
+Al añadir # al iniciar la línea, lo que están haciendo es inhabilitarla para que no pueda ser ejecutada por el interprete de comandos. También se puede utilizar para inhabilitar trozos de código que por el motivo que sea, no se quiere ejecutar en este momento.
+
+#### 7.2 Impresión de texto **echo** <a name="subparagraph7"></a>   
+* La impresión de texto es una de las formas iniciales para aprender la sintaxis de cualquier lenguaje de programación, con el famoso «hola mundo».  
+* Para imprimir una línea de texto en Bash, se utiliza la sentencia **echo** seguida del texto que quieres mostrar por pantalla entre comillas. Por ejemplo:  
+
+```{bash}
+echo "Hola mundo"
+```
+
+
+#### 7.3 Variables  <a name="subparagraph7"></a> 
+* Las variables de entorno se utilizan para almacenar algunos valores que pueden ser utilizados por los comandos   
+* Existen las variables globales y variables locales. La variable local se ejecuta solo en el shell donde se definió, mientras que la variable global es para cualquier proceso en ejecución o que se ejecute desde el shell.  
+* Si queremos ver las variables de entorno que estamos usando y que estan cargadas en nuestra sesión, escribe el comando printenv  
+* No se necesita declarar la variable previamente, ni tampoco indicar el tipo de valor que tendrá. Para crear un variable, tan solo hay que indicar su nombre, el operador igual, y el valor que le quieres asignar. Este puede ser un número, un carácter o un string (cadena de caracteres).  
+
+```{bash}
+#Crear una nueva variable en Bash
+frase="FRASE: Este es mi primer script en Bash"
+echo $frase
+#Crear otra variable
+edad=25
+echo "EDAD: $edad"
+```
+#### 7.4 Estructuras de control y bucles <a name="subparagraph7"></a>  
+
+**Comparaciones de cadenas alfanuméricas**
+
+**Operador  ** |  **Verdad (TRUE) si: ** |
+---------------| ------------------------
+=  | **A** es igual **B**             
+!= | **A** no es igual **B**    
+<  | **A** es menor que **B**  
+>  | **A** es mayor que **B**    
+
+
+**Comparación de valores numéricos**
+
+**Operador  ** |  **Verdad (TRUE) si: **| 
+---------------| ------------------------
+x -lt y  | **x menor que y **             
+x -le y	 | **x menor o igual que y**    
+x -eq y  | **x igual que y **  
+x -ge y	 | **x mayor o igual que y**   
+x -gt y  | **x mayor que y **
+x -ne y  |**x no igual que y**
+ 
+
+#### 7.5 Ciclo if, then, else  <a name="subparagraph7"></a> 
+* En el caso de las estructuras condicionales la más utilizada es el if .. then .. else.  
+* La estructura if permite que un programa decida si ejecuta una sentencia o un bloque de sentencias, en caso de que la condición sea verdadera, o bien si salta su ejecución, en caso de que la condición sea falsa.  
+* El formato general consiste primero en introducir en una línea la sentencia ***if*** seguida de la condición entre ***[corchetes]*** y acabando con ***";"***. A continuación se utiliza el ***then*** en una nueva línea, y debajo va el código que se ejecuta, si se cumple la condición indicada arriba.  Se puede incorporar un else (de manera opcional) junto con el código a ejecutar en caso de que no se cumpla la condición. Para cerrar el ciclo, terminaremos con un ***fi***.  
+
+~~~  
+if [condicion];
+then
+  comandos-codigo
+else
+  comandos-codigo
+fi
+~~~   
+
+Ejemplo:
+
+```{bash}
+var1=gato
+var2=perro
+
+if [$var1 = $var2]; then
+    echo ${var1}  es igual que ${var2}
+else
+        echo ${var1} no es igual a ${var2}
+fi
+
+```
+
+
+
+
+```{bash}
+#Establecer variables numéricas:
+A=200
+B=100
+#Comparaciones entre valores numéricos
+if [ $A -gt $B ]; then
+    echo "Es cierto que elemento ${A} es mayor a elemento ${B} "
+else
+        echo "NO es cierto que elemento ${A} es mayor a elemento ${B} " 
+fi
+
+
+```
+
+
+* De igual modo que ocurre con las estructuras condicionales, las construcciones de iteración son otro gran clásico. En este caso hay dos sentencias diferentes que podemos utilizar. Por un lado tenemos el for .. do, y por otro lado el while .. do. Al finalizar el código de ejecución, se indica la sentencia done en una nueva línea, para cerrar el bucle.  
+
+#### 7.6 Ciclo For  <a name="subparagraph7"></a> 
+
+~~~ 
+for elemento in [lista] ; 
+do  
+   comandos que pueden utilizar $elemento ; 
+done    
+~~~
+
+```{bash}
+for i in {1..5}; do echo Estudiante $i; done
+``` 
+
+```{bash}
+for i in {A..E}; do echo Estudiante $i; done
+```
+```{bash}
+
+frutas="Manzana Pera Uva"
+
+for i in ${frutas}; do
+    echo Aquí tenogo una: "$i"
+done
+```
+
+<span style="color: #00868B;">**¿Qué está imprimiendo el comando echo?**</span>  
+
+
+#### 7.6.1 Utilidad de combinar de comando en un ciclo for <a name="subparagraph7"></a>   
+```{bash}
+ls *.sh
+```
+
+```{bash}
+for i in *.sh ; do name=`echo $i | cut -d "." -f 1` ; echo CicloFor_$name ;done
+```
+
+<span style="color: #00868B;">**¿Qué está guardando la variable "name"?**</span>  
+
+```{bash}
+#cat *.sh > Lista
+#for i in $(cat Lista); do mv $i Nuevo_$i ; done 
+```
+
+
+#### 7.7 Ciclo while  <a name="subparagraph7"></a>  
+~~~  
+while  
+  condicion  
+do  
+  comandos  
+done
+~~~ 
+
+```{bash}
+VAR=0
+
+while [ $VAR -le 10 ]; do
+    echo "\$VAR: $VAR"
+    let VAR=$VAR+1
+done
+```
+
+```{bash}
+contador=1
+termina=10
+while [ $termina -ge $contador ]
+do
+  echo Participante No. $contador
+  let contador=$contador+1
+done
+```
+<span style="color: #00868B;">** Mini-reto: Enlista 1000 jugadores usando un ciclo, y re direccona la salida a un nuevo archivo. while**</span>  
+
+#### 7.8 Crear y ejecutar scripts <a name="subparagraph7"></a>  
+
+1. Crear un archivo File.sh con el editor de texto nano  
+
+~~~  
+usuario@sistema:~$ nano MiPrimerScript.sh   
+~~~  
+
+2. Modifica el archivo escribiendo en la primera línea el siguiente comando:  
+
+~~~   
+
+#!/bin/bash  
+~~~ 
+
+3. Cambiar los permisos de ejecución:   
+
+~~~  
+usuario@sistema:~$ chmod +x MiPrimerScript.sh   
+~~~  
+
+4. Ejecuta el script  
+
+~~~  
+usuario@sistema:~$ bash MiPrimerScript.sh   
+~~~  
+
+~~~  
+usuario@sistema:~$ ./MiPrimerScript.sh   
+~~~    
+
+#### 7.9 Scripts interactivos  <a name="subparagraph7"></a>   
+
+El comando ***read*** lee su entrada estándar y asigna las palabras leídas en la(s) variable(s) cuyo nombre se pasa como argumento.
+Por ejemplo, para indicar que debemos detener la ejecución para leer un determinado texto que introduzca el usuario, lo más común es utilizar la sentencia ***read***, seguido del nombre de la ***variable*** en la cual quieres que se almacene el texto leído.   
+
+<span style="color: #00868B;">** Ve a tu terminal, y crea un nuevo script: **</span> 
+
+~~~
+#!/bin/bash
+usuario=$1
+echo  Introduce tu usuario
+read usuario
+echo Bienvenido, $usuario
+~~~
+
+~~~
+#!/bin/bash
+echo "Adivina mi edad:"
+read edad
+if [ $edad -eq 30 ]; then
+  echo "¡Correcto!"
+  exit 0
+else
+  echo "¡Incorrecto!"
+exit 1
+fi
+~~~
+
+<span style="color: #00868B;">** Mini-reto: Modifica el último script, a manera que el script pregunte por los kilómetros recorridos por un automóvil 2010; y si el usuario escribe un número entre el rango de 90,000 a 130,000 km; será correcto **</span>  
+
+####  7.10 Resumen <a name="subparagraph7"></a>    
+* El símbolo # es para especificar comentarios dentro de los scripts.  
+* Para imprimir una línea de texto en Bash, se utiliza la sentencia echo seguida del texto entre comillas.  
+* El comando read es utilizado por el usuario cuando se desea introducir texto en un proceso que se está ejecutando.  
+* Las variables de entorno pueden ser globales, que se ejecutan para cualquier proceso, y locales que se ejecutan donde fueron definidas.  
+*Las estructuras condicionales if, then, else se utilizan para indicar si se va a realizar una u otra acción en función de una pregunta.  
+*Los Bucles for .. do, while .. do son utilizados para realizar tareas repetitivas.
+
+
