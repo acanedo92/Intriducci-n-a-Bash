@@ -858,6 +858,43 @@ edad=25
 echo "EDAD: $edad"
 ```
 #### 7.4 Estructuras de control y bucles <a name="subparagraph7"></a>  
+**Son el conjunto de reglas que permiten controlar el flujo de ejecución de las instrucciones de un algoritmo o de un programa**.  
+
+Las estructuras de control se pueden clasificar en:    
+- **Secuenciales**: Se refiere a un conjunto de acciones que se ejecutan en un orden específico y se suceden una tras otra. 
+
+~~~
+varA=5
+varB=95
+varC=2
+Acción1 --> Acción2 --> Acción3
+suma varA+varB ---> "el resultado dividelo entre varC" --> "Imprime el resultado"
+
+Acción1: 5+95=100
+Acción2: 100/2=50
+Acción3: 50
+
+~~~
+
+- **Condicionales**: Nos permte plantear una pregunta simple cuya respuesta deberá ser VERDADERO o FALSO, y hacer una acción subsecuente.   
+~~~
+A=10
+B=1
+¿El valor de A es mayor que el valor de B?
+De ser VERDADERo, guarda el valor de A en una nueva variable.
+~~~
+- **Iterativas**: Acciones que se ejecutan repetidamente hasta que se cumpla una condición determinada.   
+~~~
+"Camina en línea recta hasta topar con pared..."
+
+Escribe un número x, hasta que x sea igual a 100...
+1
+2
+...
+100
+~~~
+
+**OPERADORES BOLEANOS EN PROGRAMACIÓN BASH**  
 
 **Comparaciones de cadenas alfanuméricas**
 
@@ -867,7 +904,6 @@ echo "EDAD: $edad"
 != | **A** no es igual **B**    
 <  | **A** es menor que **B**  
 >  | **A** es mayor que **B**    
-
 
 **Comparación de valores numéricos**
 
