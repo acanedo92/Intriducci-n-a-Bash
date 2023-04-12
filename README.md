@@ -6,4 +6,4 @@ Incluye:
 3. BasesDatos
 4. Tutorial del taller.
 
-Agregar un comentario al readme
+Agregar un comentario 
