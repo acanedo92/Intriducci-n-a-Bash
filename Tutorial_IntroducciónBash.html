@@ -2096,11 +2096,11 @@ Sintáxis: mv [OPCIÓN]… ORIGEN… DIRECTORIO</p>
 <pre><code>     usuario@sistema:~$ ejercicio_1 ./borradores</code></pre>
 <p>Función: También permite renombrar un archivo o directorio.<br />
 Sintáxis: mv Nombre_Inicial …Nombre_Final ..</p>
-<pre><code>     usuario@sistema:~$ mv mv ejercicio_1  ejercicios_1</code></pre>
+<pre><code>     usuario@sistema:~$ mv ejercicio_1  Ejercicios_1</code></pre>
 </div>
 <div id="el-comando-rm" class="section level5">
 <h5>El comando <strong><em>rm</em></strong></h5>
-<p>Función: Permite borrar archivos, enlaaces y directorios (sólo sí se
+<p>Función: Permite borrar archivos, enlaces y directorios (sólo sí se
 incluye opción -r).<br />
 Sintáxis: rm [OPCIÓN]… [FICHERO]…</p>
 <pre><code>     usuario@sistema:~$ rm -r ejercicios_1</code></pre>
@@ -2115,9 +2115,8 @@ Sintáxis: cat [OPCIÓN]… [FICHERO]…</p>
 <h5>El comando <strong><em>cp</em></strong></h5>
 <p>Función: Permite copiar un archivo a otro. También puede copiar
 varios ficheros en un directorio determinado.<br />
-Sintáxis: cp [OPCIÓN]… ORIGEN… DIRECTORIO<br />
-~~~ <a href="mailto:usuario@sistema" class="email">usuario@sistema</a>:~$ cp borrador_datos-inicales.doc
-/home/usuario/Ejercicios_Bash ~~~</p>
+Sintáxis: cp [OPCIÓN]… ORIGEN… DIRECTORIO</p>
+<pre><code>     usuario@sistema:~$ cp borrador_datos-inicales.doc /home/usuario/Ejercicios_Bash</code></pre>
 </div>
 </div>
 <div id="comodines" class="section level4">
@@ -2492,7 +2491,7 @@ terminal, trabajaremos con la carpeta de DataBases y con el archivo
 <h4>Comando <strong><em>less </em></strong></h4>
 <p>Función: Despliega archivos página a página<br />
 Sintáxis: <em>less</em> FileName</p>
-<pre class="bash"><code># less InsectSprays.csv</code></pre>
+<pre class="bash"><code># less InsectSprays.cvs</code></pre>
 </div>
 <div id="comando-headtail" class="section level4">
 <h4>Comando <strong><em>head/tail</em></strong></h4>
@@ -2503,12 +2502,12 @@ Opciones: head/tail –help<br />
 -n: para indicar el número de líneas que deseas desplegar.</p>
 <pre class="bash"><code>head -n3 InsectSprays.csv</code></pre>
 <pre><code>## Individuo,Tratamiento,Tiempo
-## Bicho1,Insecticida-Comercial,10
-## Bicho2,Insecticida-Comercial,7</code></pre>
+## Mosca1,Insecticida-Comercial,10
+## Mosca2,Insecticida-Comercial,7</code></pre>
 <pre class="bash"><code>tail -n3 InsectSprays.csv</code></pre>
-<pre><code>## Bicho48,Matamoscas-Casero,4
-## Bicho49,Matamoscas-Casero,3
-## Bicho50,Matamoscas-Casero,5</code></pre>
+<pre><code>## Mosca48,Matamoscas-Casero,4
+## Mosca49,Matamoscas-Casero,3
+## Mosca50,Matamoscas-Casero,5</code></pre>
 <ul>
 <li>Puedes crear un subset de datos y redireccionar a un nuevo
 archivo:<br />
@@ -2540,18 +2539,18 @@ coincidencias con el texto que introducimos.</p>
 (letra, palabras con espacios, signos de puntuación y caracteres del
 control)</p>
 <pre class="bash"><code>grep &quot;Insecticida-Comercial&quot; InsectSprays.csv</code></pre>
-<pre><code>## Bicho1,Insecticida-Comercial,10
-## Bicho2,Insecticida-Comercial,7
-## Bicho3,Insecticida-Comercial,20
-## Bicho4,Insecticida-Comercial,14
-## Bicho5,Insecticida-Comercial,14
-## Bicho6,Insecticida-Comercial,12
-## Bicho7,Insecticida-Comercial,10
-## Bicho8,Insecticida-Comercial,23
-## Bicho9,Insecticida-Comercial,17
-## Bicho10,Insecticida-Comercial,20
-## Bicho11,Insecticida-Comercial,14
-## Bicho12,Insecticida-Comercial,13</code></pre>
+<pre><code>## Mosca1,Insecticida-Comercial,10
+## Mosca2,Insecticida-Comercial,7
+## Mosca3,Insecticida-Comercial,20
+## Mosca4,Insecticida-Comercial,14
+## Mosca5,Insecticida-Comercial,14
+## Mosca6,Insecticida-Comercial,12
+## Mosca7,Insecticida-Comercial,10
+## Mosca8,Insecticida-Comercial,23
+## Mosca9,Insecticida-Comercial,17
+## Mosca10,Insecticida-Comercial,20
+## Mosca11,Insecticida-Comercial,14
+## Mosca12,Insecticida-Comercial,13</code></pre>
 <p>Opciones: grep –help<br />
 grep -c : imprime solo un número de líneas que coincide con el patrón de
 búsqueda dentro de un archvio.</p>
@@ -2570,58 +2569,58 @@ un tabulador (<code>&quot;\t&quot;</code>); podrías usar espacio
 (<code>&quot;\s&quot;</code>), punto (“.”), guiones (“-”, “_“), comas”,“,etc.</p>
 <p>cut -f –fields= Selecciona/muestra solamente los campos de
 interés</p>
-<pre class="bash"><code>cut  -f 1 InsectSprays.csv </code></pre>
-<pre><code>## Individuo,Tratamiento,Tiempo
-## Bicho1,Insecticida-Comercial,10
-## Bicho2,Insecticida-Comercial,7
-## Bicho3,Insecticida-Comercial,20
-## Bicho4,Insecticida-Comercial,14
-## Bicho5,Insecticida-Comercial,14
-## Bicho6,Insecticida-Comercial,12
-## Bicho7,Insecticida-Comercial,10
-## Bicho8,Insecticida-Comercial,23
-## Bicho9,Insecticida-Comercial,17
-## Bicho10,Insecticida-Comercial,20
-## Bicho11,Insecticida-Comercial,14
-## Bicho12,Insecticida-Comercial,13
-## Bicho13,Lampara-UV,11
-## Bicho14,Lampara-UV,17
-## Bicho15,Lampara-UV,21
-## Bicho16,Lampara-UV,11
-## Bicho17,Lampara-UV,16
-## Bicho18,Lampara-UV,14
-## Bicho19,Lampara-UV,17
-## Bicho20,Lampara-UV,17
-## Bicho21,Lampara-UV,19
-## Bicho22,Lampara-UV,21
-## Bicho23,Lampara-UV,7
-## Bicho24,Lampara-UV,13
-## Bicho25,Bio-Insecticida,0
-## Bicho26,Bio-Insecticida,1
-## Bicho27,Bio-Insecticida,7
-## Bicho28,Bio-Insecticida,2
-## Bicho29,Bio-Insecticida,3
-## Bicho30,Bio-Insecticida,1
-## Bicho31,Bio-Insecticida,2
-## Bicho32,Bio-Insecticida,1
-## Bicho33,Bio-Insecticida,3
-## Bicho34,Bio-Insecticida,0
-## Bicho35,Bio-Insecticida,1
-## Bicho36,Bio-Insecticida,4
-## Bicho37,Matamoscas-Casero,3
-## Bicho38,Matamoscas-Casero,5
-## Bicho39,Matamoscas-Casero,12
-## Bicho40,Matamoscas-Casero,6
-## Bicho41,Matamoscas-Casero,4
-## Bicho42,Matamoscas-Casero,3
-## Bicho43,Matamoscas-Casero,5
-## Bicho44,Matamoscas-Casero,5
-## Bicho45,Matamoscas-Casero,5
-## Bicho46,Matamoscas-Casero,5
-## Bicho47,Matamoscas-Casero,2
-## Bicho48,Matamoscas-Casero,4
-## Bicho49,Matamoscas-Casero,3
-## Bicho50,Matamoscas-Casero,5</code></pre>
+<pre class="bash"><code>cut  -d &quot;,&quot; -f 1 InsectSprays.csv </code></pre>
+<pre><code>## Individuo
+## Mosca1
+## Mosca2
+## Mosca3
+## Mosca4
+## Mosca5
+## Mosca6
+## Mosca7
+## Mosca8
+## Mosca9
+## Mosca10
+## Mosca11
+## Mosca12
+## Mosca13
+## Mosca14
+## Mosca15
+## Mosca16
+## Mosca17
+## Mosca18
+## Mosca19
+## Mosca20
+## Mosca21
+## Mosca22
+## Mosca23
+## Mosca24
+## Mosca25
+## Mosca26
+## Mosca27
+## Mosca28
+## Mosca29
+## Mosca30
+## Mosca31
+## Mosca32
+## Mosca33
+## Mosca34
+## Mosca35
+## Mosca36
+## Mosca37
+## Mosca38
+## Mosca39
+## Mosca40
+## Mosca41
+## Mosca42
+## Mosca43
+## Mosca44
+## Mosca45
+## Mosca46
+## Mosca47
+## Mosca48
+## Mosca49
+## Mosca50</code></pre>
 </div>
 <div id="comando-sed" class="section level4">
 <h4>Comando <strong><em>sed</em></strong></h4>
@@ -2680,7 +2679,7 @@ La ventaja es dividir una tarea grande, en pequeñas tarea o pasos.</p>
 extraer todas las líneas que contengan la palabra “Bicho”, y cortar la
 columna 1 para finalmente contabilizar el número de individuos.</p>
 <pre class="bash"><code>head InsectSprays.csv | grep &quot;Bicho&quot; | cut -f 1 | wc -l</code></pre>
-<pre><code>## 9</code></pre>
+<pre><code>## 0</code></pre>
 <p><span style="color: #00868B;"><strong>Mini-Reto: Utilizando los
 comando cut | grep | wc responde: ¿A cuántos individuos en la base de
 datos InsectSprays.csv se les aplicó el Bio-Insecticida?
@@ -3021,7 +3020,7 @@ subsecuente.<br />
 <pre><code>A=10
 B=1
 ¿El valor de A es mayor que el valor de B?
-De ser VERDADERo, guarda el valor de A en una nueva variable.</code></pre>
+De ser VERDADERO, guarda el valor de A en una nueva variable.</code></pre>
 <ul>
 <li><strong>Iterativas</strong>: Acciones que se ejecutan repetidamente
 hasta que se cumpla una condición determinada.<br />
@@ -3097,6 +3096,31 @@ Escribe un número x, hasta que x sea igual a 100...
 </tr>
 </tbody>
 </table>
+<p><strong>Operadores lógicos</strong></p>
+<table>
+<colgroup>
+<col width="38%" />
+<col width="61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Operador </strong></th>
+<th><strong>Significado</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&amp;&amp;</td>
+<td>condición A <strong>y</strong> condición B. Esto implica que las dos
+comparaciones tienen que ser ciertas.</td>
+</tr>
+<tr class="even">
+<td><code>||</code></td>
+<td>condición A <strong>o</strong> condición B. Con que una de las dos
+comparaciones sea cierta es suficiente</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="ciclo-if-then-else" class="section level4">
 <h4>7.5 Ciclo if, then, else <a name="subparagraph7"></a></h4>
@@ -3125,18 +3149,17 @@ then
 else
   comandos-codigo
 fi</code></pre>
-<p>Ejemplo:</p>
+<p>Ejemplo 1:</p>
 <pre class="bash"><code>var1=gato
 var2=perro
 
-if [$var1 = $var2]; then
-    echo ${var1}  es igual que ${var2}
-else
-        echo ${var1} no es igual a ${var2}
-fi
-</code></pre>
-<pre><code>## bash: línea 3: [gato: orden no encontrada
-## gato no es igual a perro</code></pre>
+if [ $var1 = $var2 ] ; then 
+echo &quot;${var1} es igual a ${var2}&quot; 
+else 
+echo &quot;${var1} no es igual a ${var2}&quot;
+fi</code></pre>
+<pre><code>## gato no es igual a perro</code></pre>
+<p>Ejemplo 2:</p>
 <pre class="bash"><code>#Establecer variables numéricas:
 A=200
 B=100
@@ -3144,7 +3167,7 @@ B=100
 if [ $A -gt $B ]; then
     echo &quot;Es cierto que elemento ${A} es mayor a elemento ${B} &quot;
 else
-        echo &quot;NO es cierto que elemento ${A} es mayor a elemento ${B} &quot; 
+        echo &quot;NO es cierto que elemento ${A} es mayor a elemento ${B} &quot; ;
 fi
 </code></pre>
 <pre><code>## Es cierto que elemento 200 es mayor a elemento 100</code></pre>
@@ -3179,11 +3202,11 @@ done    </code></pre>
 frutas=&quot;Manzana Pera Uva&quot;
 
 for i in ${frutas}; do
-    echo Aquí tenogo una: &quot;$i&quot;
+    echo &quot;Aquí tengo una: $i&quot;
 done</code></pre>
-<pre><code>## Aquí tenogo una: Manzana
-## Aquí tenogo una: Pera
-## Aquí tenogo una: Uva</code></pre>
+<pre><code>## Aquí tengo una: Manzana
+## Aquí tengo una: Pera
+## Aquí tengo una: Uva</code></pre>
 <p><span style="color: #00868B;"><strong>¿Qué está imprimiendo el
 comando echo?</strong></span></p>
 </div>
@@ -3214,7 +3237,7 @@ comando echo?</strong></span></p>
 ## CicloFor_Variale</code></pre>
 <p><span style="color: #00868B;"><strong>¿Qué está guardando la variable
 “name”?</strong></span></p>
-<pre class="bash"><code>#cat *.sh &gt; Lista
+<pre class="bash"><code>#ls *.sh &gt; Lista
 #for i in $(cat Lista); do mv $i Nuevo_$i ; done </code></pre>
 </div>
 <div id="ciclo-while" class="section level4">
@@ -3259,8 +3282,8 @@ done</code></pre>
 ## Participante No. 9
 ## Participante No. 10</code></pre>
 <p><span style="color: #00868B;">** Mini-reto: Enlista 1000 jugadores
-usando un ciclo, y re direccona la salida a un nuevo archivo.
-while**</span></p>
+usando un ciclo while, y re direccona la salida a un nuevo
+archivo.**</span></p>
 </div>
 <div id="crear-y-ejecutar-scripts" class="section level4">
 <h4>7.8 Crear y ejecutar scripts <a name="subparagraph7"></a></h4>
